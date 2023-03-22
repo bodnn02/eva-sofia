@@ -395,10 +395,12 @@ $(".filters-menu__close").click(function () {
 });
 
 $(window).scroll(function () {
-  if ($(this).scrollTop() > 50) {
+  if ($(this).scrollTop() > 800) {
     $(".header").addClass("scrolled");
+    $(".mm-filters").addClass("scrolled");
   } else {
     $(".header").removeClass("scrolled");
+    $(".mm-filters").removeClass("scrolled");
   }
 });
 
