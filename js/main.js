@@ -1,8 +1,25 @@
 $(".select__title").click(function (e) {
   $(this).parent().toggleClass("active");
 });
+$(document).mouseup(function (e) {
+  var container = $(".select.active");
+  if (!container.is(e.target) && container.has(e.target).length === 0) {
+    container.removeClass("active");
+  }
+});
 $(".sub-list__item").click(function (e) {
-  $(this).toggleClass("selected");
+  if (!$(this).parent().parent().parent().hasClass("single")) {
+    $(this).toggleClass("selected");
+  } else {
+    $(this).parent().children(".selected").removeClass("selected");
+    $(this).addClass("selected");
+    $(this)
+      .parent()
+      .parent()
+      .parent()
+      .find(".select__title")
+      .text($(this).text());
+  }
 });
 $(".input")
   .children("input")
@@ -83,6 +100,63 @@ $(".gallery-overlay__prev-btn").click(function () {
       "/" +
       $(".gallery-overlay__list").children(".gallery-overlay__item").length
   );
+});
+$(".gallery-overlay__current-image").swipe({
+  swipe: function (
+    event,
+    direction,
+    distance,
+    duration,
+    fingerCount,
+    fingerData
+  ) {
+    if (direction == "left") {
+      // Находим текущий выбранный элемент в списке gallery-overlay__list
+      var current = $(".gallery-overlay__list .selected");
+      // Находим следующий элемент в списке или первый, если текущий последний
+      var next = current.next().length
+        ? current.next()
+        : $(".gallery-overlay__list li:first");
+      // Убираем класс selected у текущего элемента
+      current.removeClass("selected");
+      // Добавляем класс selected к следующему элементу
+      next.addClass("selected");
+      // Получаем src изображения следующего элемента
+      var src = next.find("img").attr("src");
+      // Заменяем src изображения gallery-overlay__current-image на src следующего элемента
+      $(".gallery-overlay__current-image").attr("src", src);
+
+      $(".gallery-overlay__h2").text(
+        $(".gallery-overlay__list .selected").index() +
+          1 +
+          "/" +
+          $(".gallery-overlay__list").children(".gallery-overlay__item").length
+      );
+    }
+    if (direction == "right") {
+      // Находим текущий выбранный элемент в списке gallery-overlay__list
+      var current = $(".gallery-overlay__list .selected");
+      // Находим предыдущий элемент в списке или последний, если текущий первый
+      var prev = current.prev().length
+        ? current.prev()
+        : $(".gallery-overlay__list li:last");
+      // Убираем класс selected у текущего элемента
+      current.removeClass("selected");
+      // Добавляем класс selected к предыдущему элементу
+      prev.addClass("selected");
+      // Получаем src изображения предыдущего элемента
+      var src = prev.find("img").attr("src");
+      // Заменяем src изображения gallery-overlay__current-image на src предыдущего элемента
+      $(".gallery-overlay__current-image").attr("src", src);
+
+      $(".gallery-overlay__h2").text(
+        $(".gallery-overlay__list .selected").index() +
+          1 +
+          "/" +
+          $(".gallery-overlay__list").children(".gallery-overlay__item").length
+      );
+    }
+  },
 });
 $(".property-services__add-btn").click(function (e) {
   // Находим родителя кнопки
@@ -287,18 +361,18 @@ $(".apart-list__preview").swipe({
 });
 
 $(".mm-btn").click(function (e) {
-    if($(".m-menu").hasClass("opened")) {
-        unlockScroll()
-        $(".m-menu").removeClass("opened")
-    } else {
-        lockScroll()
-        $(".m-menu").addClass("opened")
-    }
+  if ($(".m-menu").hasClass("opened")) {
+    unlockScroll();
+    $(".m-menu").removeClass("opened");
+  } else {
+    lockScroll();
+    $(".m-menu").addClass("opened");
+  }
 });
 
-$(".video-wrapper").click(function() {
-  var video = $(this).find(".video")
-  var button = $(this).find(".play-btn")
+$(".video-wrapper").click(function () {
+  var video = $(this).find(".video");
+  var button = $(this).find(".play-btn");
   // Проверяем, проигрывается ли видео или нет
   if (video.get(0).paused) {
     // Если нет, то запускаем его
@@ -309,4 +383,64 @@ $(".video-wrapper").click(function() {
     video.get(0).pause();
     button.fadeIn();
   }
+});
+
+$(".mm-filters__header").click(function () {
+  $(".filters-menu").addClass("opened");
+  lockScroll();
+});
+$(".filters-menu__close").click(function () {
+  $(".filters-menu").removeClass("opened");
+  unlockScroll();
+});
+
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 50) {
+    $(".header").addClass("scrolled");
+  } else {
+    $(".header").removeClass("scrolled");
+  }
+});
+
+$(".paggination-ul").swipe({
+  swipe: function (
+    event,
+    direction,
+    distance,
+    duration,
+    fingerCount,
+    fingerData
+  ) {
+    let list = $(this);
+    let count = list.children("li").length;
+    let index = list.children(".active").index();
+
+    if (direction == "left") {
+      if (index != count - 1) {
+        list.children(".active").removeClass("active");
+        list
+          .children("li")
+          .eq(index + 1)
+          .addClass("active");
+      } else {
+        list.children(".active").removeClass("active");
+        list.children("li").eq(0).addClass("active");
+      }
+    }
+    if (direction == "right") {
+      if (index != 0) {
+        list.children(".active").removeClass("active");
+        list
+          .children("li")
+          .eq(index - 1)
+          .addClass("active");
+      } else {
+        list.children(".active").removeClass("active");
+        list
+          .children("li")
+          .eq(count - 1)
+          .addClass("active");
+      }
+    }
+  },
 });
