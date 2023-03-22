@@ -1753,6 +1753,7 @@ main {
 }
 .banner.small {
     height: 280px;
+    background-size: 100vw 200%;
 }
 /* Contacts page *Start* */
 
