@@ -18,6 +18,9 @@ strong {
 .list {
     list-style: url(../img/list-marker.svg);
 }
+.list > li:not(:last-child) {
+    margin-bottom: 8px;
+}
 section > .container {
     margin: 0 120px;
 }
