@@ -884,7 +884,7 @@ main {
 }
 .feedback-form__img {
   width: 100%;
-  height: fit-content;
+  height: auto;
   border-radius: 16px;
 }
 .feedback-form__map {
