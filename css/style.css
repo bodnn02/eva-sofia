@@ -2014,6 +2014,8 @@ main {
   z-index: 2;
 }
 .about-section__text {
+  margin-bottom: 20px;
+
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -2612,9 +2614,6 @@ main {
   .property-content > :first-child {
     margin-right: 0;
   }
-  .about-section .flex-wrapper > :first-child {
-    margin-right: auto;
-  }
 }
 @media (max-width: 1400px) {
   .popular-section .apart-list {
@@ -2944,6 +2943,9 @@ main {
   }
   .property-content .mm-checkout {
     display: flex;
+  }
+  .about-section .flex-wrapper > :first-child {
+    margin-right: auto;
   }
 }
 @media (max-width: 1000px) {
