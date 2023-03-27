@@ -2037,6 +2037,8 @@ main {
 }
 .reason-list__icon {
   padding: 16px;
+  width: 36px;
+  height: 36px;
 
   border-radius: 50%;
   background: #ecf5fa;
@@ -2285,7 +2287,7 @@ main {
   justify-content: space-between;
 
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
 
   color: #000000;
@@ -2396,6 +2398,9 @@ main {
   line-height: 36px;
 
   color: #000000;
+}
+.reasons-list__item > .reasons-list__title {
+  display: none;
 }
 .reasons-list__title + .reasons-list__text {
   margin-top: 24px;
@@ -2749,6 +2754,13 @@ main {
     border-radius: 2px;
     border-bottom: 1px solid #e4e4e4;
   }
+  .reasons-list__item {
+    gap: 16px;
+    padding-bottom: 40px;
+  }
+  .reasons-list {
+    gap: 0;
+  }
   .select-header {
     grid-template-columns: 1fr 24px;
   }
@@ -3052,6 +3064,16 @@ main {
     margin-left: 0;
     background-image: url(../img/promocode-blue.svg);
   }
+  .section-header + .prompt-list {
+    margin-top: 16px;
+  }
+  .prompt-list {
+    gap: 16px;
+  }
+  .prompt-list__item {
+    padding: 24px 0;
+    gap: 12px;
+  }
 }
 /* Mobile filters *Start* */
 
@@ -3248,6 +3270,18 @@ main {
   .reviews-list__photo + div {
     margin-left: 12px;
   }
+  .details-header {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .details-content {
+    margin-right: 60px;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
   .reasons-section {
     padding: 64px 0;
   }
@@ -3298,6 +3332,30 @@ main {
   .reasons-list__title {
     font-size: 20px;
     line-height: 28px;
+  }
+  .reasons-list__description > .reasons-list__title {
+    display: none;
+  }
+  .reasons-list__item > .reasons-list__title {
+    display: block;
+    order: 1;
+  }
+  .reasons-list__preview {
+    order: 2;
+    width: 100%;
+    height: auto;
+  }
+  .staff-list {
+    gap: 20px;
+  }
+  .staff-section .section-header + .paggination-ul {
+    margin-top: 16px;
+  }
+  .reasons-list__description, .reasons-list__item:nth-child(2n) > .reasons-list__description {
+    order: 3;
+  }
+  .reasons-list__title + .reasons-list__text {
+    margin-top: 0;
   }
   .reasons-list__text {
     font-size: 16px;
@@ -3358,11 +3416,18 @@ main {
     display: flex;
     align-items: center;
   }
-  .reason-list__icon {
-    padding: 8px;
+  .section-header + .reason-list {
+    margin-top: 16px;
   }
   .reason-list__icon {
+    padding: 8px;
     left: 42%;
+    width: 25px;
+    height: 25px;
+  }
+  .reason-list__title {
+    font-size: 18px;
+    line-height: 24px;
   }
   .reason-list__icon + .reason-list__title {
     margin-top: 0;
