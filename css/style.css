@@ -1987,6 +1987,7 @@ main {
 }
 .about-section .flex-wrapper > :first-child {
   margin-right: 36px;
+  margin-bottom: 16px;
 }
 .flex-wrapper {
   display: flex;
@@ -2287,7 +2288,7 @@ main {
   justify-content: space-between;
 
   font-weight: 600;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 22px;
 
   color: #000000;
@@ -2611,6 +2612,9 @@ main {
   .property-content > :first-child {
     margin-right: 0;
   }
+  .about-section .flex-wrapper > :first-child {
+    margin-right: auto;
+  }
 }
 @media (max-width: 1400px) {
   .popular-section .apart-list {
@@ -2877,6 +2881,9 @@ main {
   .property-list {
     margin: 0 60px;
   }
+  .details-wrapper {
+    gap: 28px;
+  }
   .property-list .filters-form {
     width: fit-content;
     margin: 0 auto;
@@ -2992,6 +2999,9 @@ main {
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0) 100%
     );
+  }
+  .prompt-list__preview {
+    margin-bottom: 64px;
   }
   section > .container {
     margin: 0 60px;
